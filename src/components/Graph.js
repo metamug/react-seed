@@ -37,6 +37,12 @@ export default class Graph extends React.Component {
       );
   }
   render() {
+    const backgroundColor1 = randomColor({
+      count: 29
+    });
+    const backgroundColor2 = randomColor({
+      count: 3
+    });
     const { error, isLoaded } = this.state;
     const { affected, cured, deaths, labels } = this.state;
     const numRows = labels.length;
@@ -55,12 +61,8 @@ export default class Graph extends React.Component {
       datasets: [
         {
           data: affected,
-          backgroundColor: randomColor({
-            count: 29
-          }),
-          hoverBackgroundColor: randomColor({
-            count: 29
-          })
+          backgroundColor: backgroundColor1,
+          hoverBackgroundColor: backgroundColor1
         }
       ]
     };
@@ -69,12 +71,8 @@ export default class Graph extends React.Component {
       datasets: [
         {
           data: [totalaffected, totalcured, totaldeaths],
-          backgroundColor: randomColor({
-            count: 3
-          }),
-          hoverBackgroundColor: randomColor({
-            count: 3
-          })
+          backgroundColor: backgroundColor2,
+          hoverBackgroundColor: backgroundColor2
         }
       ]
     };
@@ -85,13 +83,35 @@ export default class Graph extends React.Component {
     } else {
       return (
         <div>
-          <div>
-            <h2>Affected Count Of All the States</h2>
-            <Pie data={data1} />
-          </div>
-          <div>
-            <h2>Overall Total Statistics</h2>
-            <Pie data={data2} />
+          <div class='container'>
+            <div class='row'>
+              <div class='col-8'>
+                <div class='card'>
+                  <div class='card-body'>
+                    <div class='card-title'>
+                      <h2>Affected Count Of All the States</h2>
+                    </div>
+                    <br />
+                    <div class='card-description'>
+                      <Pie data={data1} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class='col-4'>
+                <div class='card'>
+                  <div class='card-body'>
+                    <div class='card-title'>
+                      <h2>Overall Total Statistics</h2>
+                    </div>
+                    <br></br>
+                    <div class='card-description'>
+                      <Pie data={data2} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       );
