@@ -20,8 +20,8 @@ export default class AppNavbar extends Component {
           <span class='navbar-toggler-icon'></span>
         </button>
 
-        <ul class='navbar-nav ml-auto mr-5'>
-          <li class='nav-item active'>
+        <ul className='navbar-nav ml-auto mr-5'>
+          <li className='nav-item active'>
             <Link to='/table' className='nav-link'>
               Table <span className='sr-only'>(current)</span>
             </Link>
