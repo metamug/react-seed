@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import AppNavbar from './components/AppNavbar';
-import Form from './components/Form';
+import Form from './components/dummyform';
 import Table from './components/Table';
 import Graph from './components/Graph';
 import Home from './components/Home';
