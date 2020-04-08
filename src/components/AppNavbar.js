@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 export default class AppNavbar extends Component {
   render() {
     return (
-      <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
-        <a class='navbar-brand' href='/'>
+      <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+        <a className='navbar-brand' href='/'>
           Navbar
         </a>
         <button
-          class='navbar-toggler'
+          className='navbar-toggler'
           type='button'
           data-toggle='collapse'
           data-target='#navbarSupportedContent'
@@ -17,7 +17,7 @@ export default class AppNavbar extends Component {
           aria-expanded='false'
           aria-label='Toggle navigation'
         >
-          <span class='navbar-toggler-icon'></span>
+          <span className='navbar-toggler-icon'></span>
         </button>
 
         <ul className='navbar-nav ml-auto mr-5'>
@@ -26,12 +26,12 @@ export default class AppNavbar extends Component {
               Table <span className='sr-only'>(current)</span>
             </Link>
           </li>
-          <li class='nav-item active'>
+          <li className='nav-item active'>
             <Link to='/form' className='nav-link'>
               Form <span className='sr-only'>(current)</span>
             </Link>
           </li>
-          <li class='nav-item active'>
+          <li className='nav-item active'>
             <Link to='/graph' className='nav-link'>
               Graph <span className='sr-only'>(current)</span>
             </Link>

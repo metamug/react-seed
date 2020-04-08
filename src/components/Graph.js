@@ -83,29 +83,29 @@ export default class Graph extends React.Component {
     } else {
       return (
         <div>
-          <div class='container'>
-            <div class='row'>
-              <div class='col-8'>
-                <div class='card'>
-                  <div class='card-body'>
-                    <div class='card-title'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-8'>
+                <div className='card'>
+                  <div className='card-body'>
+                    <div className='card-title'>
                       <h2>Affected Count Of All the States</h2>
                     </div>
                     <br />
-                    <div class='card-description'>
+                    <div className='card-description'>
                       <Pie data={data1} />
                     </div>
                   </div>
                 </div>
               </div>
-              <div class='col-4'>
-                <div class='card'>
-                  <div class='card-body'>
-                    <div class='card-title'>
+              <div className='col-4'>
+                <div className='card'>
+                  <div className='card-body'>
+                    <div className='card-title'>
                       <h2>Overall Total Statistics</h2>
                     </div>
                     <br></br>
-                    <div class='card-description'>
+                    <div className='card-description'>
                       <Pie data={data2} />
                     </div>
                   </div>

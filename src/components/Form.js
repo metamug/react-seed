@@ -72,81 +72,87 @@ class Form extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div className='form-group'>
-            <label htmlfor='method'>Method</label>
-            <select
-              className='form-control'
-              id='method'
-              name='method'
-              onChange={this.handleChange}
-            >
-              <option>POST</option>
-              <option>PUT</option>
-              <option>GET</option>
-              <option>DELETE</option>
-            </select>
-          </div>
-          <div className='custom-control custom-checkbox'>
-            <input
-              type='checkbox'
-              className='custom-control-input'
-              id='item'
-              name='item'
-              onChange={this.handleChange}
-            />
-            <label className='custom-control-label' for='item'>
-              Select Item??
-            </label>
-          </div>
-          <div className='form-group'>
-            <div>
-              <div className='code-editor html-code'>
-                <div className='editor-header'>HTML</div>
-                <CodeMirror
-                  value={html}
-                  name='html'
-                  options={{
-                    mode: 'htmlmixed',
-                    ...codeMirrorOptions
-                  }}
-                  onBeforeChange={(editor, data, html) => {
-                    this.setState({ html });
-                  }}
-                />
-              </div>
-              <div className='code-editor html-code'>
-                <div className='editor-header'>CSS</div>
-                <CodeMirror
-                  value={css}
-                  name='css'
-                  options={{
-                    mode: 'css',
-                    ...codeMirrorOptions
-                  }}
-                  onBeforeChange={(editor, data, css) => {
-                    this.setState({ css });
-                  }}
-                />
-              </div>
-              <div className='code-editor html-code'>
-                <div className='editor-header'>JavaScript</div>
-                <CodeMirror
-                  value={js}
-                  name='js'
-                  options={{
-                    mode: 'javascript',
-                    ...codeMirrorOptions
-                  }}
-                  onBeforeChange={(editor, data, js) => {
-                    this.setState({ js });
-                  }}
-                />
+          <div className='container'>
+            <div className='row'>
+              <div className='col-4'>
+                <div className='form-group'>
+                  <label htmlfor='method'>Method</label>
+                  <select
+                    className='form-control'
+                    id='method'
+                    name='method'
+                    onChange={this.handleChange}
+                  >
+                    <option>POST</option>
+                    <option>PUT</option>
+                    <option>GET</option>
+                    <option>DELETE</option>
+                  </select>
+                </div>
               </div>
             </div>
+            <div className='custom-control custom-checkbox'>
+              <input
+                type='checkbox'
+                className='custom-control-input'
+                id='item'
+                name='item'
+                onChange={this.handleChange}
+              />
+              <label className='custom-control-label' for='item'>
+                Select Item??
+              </label>
+            </div>
+            <div className='form-group'>
+              <div className='row'>
+                <div className='code-editor html-code col-4'>
+                  <div className='editor-header'>HTML</div>
+                  <CodeMirror
+                    value={html}
+                    name='html'
+                    options={{
+                      mode: 'htmlmixed',
+                      ...codeMirrorOptions
+                    }}
+                    onBeforeChange={(editor, data, html) => {
+                      this.setState({ html });
+                    }}
+                  />
+                </div>
+                <div className='code-editor html-code col-4'>
+                  <div className='editor-header'>CSS</div>
+                  <CodeMirror
+                    value={css}
+                    name='css'
+                    options={{
+                      mode: 'css',
+                      ...codeMirrorOptions
+                    }}
+                    onBeforeChange={(editor, data, css) => {
+                      this.setState({ css });
+                    }}
+                  />
+                </div>
+                <div className='code-editor html-code col-4'>
+                  <div className='editor-header'>JavaScript</div>
+                  <CodeMirror
+                    value={js}
+                    name='js'
+                    options={{
+                      mode: 'javascript',
+                      ...codeMirrorOptions
+                    }}
+                    onBeforeChange={(editor, data, js) => {
+                      this.setState({ js });
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <button type='submit' className='btn btn-primary'>
+              Submit
+            </button>
           </div>
-          <button type='submit' className='btn btn-primary'>
-            Submit
-          </button>
         </form>
       </div>
     );
