@@ -27,9 +27,7 @@ export default class Form extends Component {
       method: 'POST',
       item: false,
       showModal: false,
-      html: '',
-      css: '',
-      js: '',
+      xml: '',
       id: ''
     };
     this.handleChange = this.handleChange.bind(this);
@@ -43,27 +41,6 @@ export default class Form extends Component {
   handleCloseModal = event => {
     this.setState({ showModal: false }, () => {
       console.log(this.state);
-      console.log(`
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-        <style>
-          ${this.state.css}
-        </style>
-      </head>
-      <body>
-        <div>${this.state.html}</div>
-
-        <script type="text/javascript">
-          ${this.state.js}
-        </script>
-      </body>
-      </html>
-      `);
     });
     event.preventDefault();
   };
@@ -72,10 +49,11 @@ export default class Form extends Component {
     this.setState({ [evt.target.name]: evt.target.value });
   };
   render() {
-    const { html, css, js } = this.state;
+    const { xml } = this.state;
     const codeMirrorOptions = {
       theme: 'material',
       lineNumbers: true,
+      autoScroll: true,
       scrollbarStyle: null,
       lineWrapping: true
     };
@@ -141,45 +119,17 @@ export default class Form extends Component {
               </div>
               <div className='form-group'>
                 <div className='row'>
-                  <div className='code-editor html-code col-4'>
-                    <div className='editor-header'>HTML</div>
+                  <div className='code-editor xml-code col-8'>
+                    <div className='editor-header'>XML</div>
                     <CodeMirror
-                      value={html}
-                      name='html'
+                      value={xml}
+                      name='xml'
                       options={{
-                        mode: 'htmlmixed',
+                        mode: 'xml',
                         ...codeMirrorOptions
                       }}
-                      onBeforeChange={(editor, data, html) => {
-                        this.setState({ html });
-                      }}
-                    />
-                  </div>
-                  <div className='code-editor html-code col-4'>
-                    <div className='editor-header'>CSS</div>
-                    <CodeMirror
-                      value={css}
-                      name='css'
-                      options={{
-                        mode: 'css',
-                        ...codeMirrorOptions
-                      }}
-                      onBeforeChange={(editor, data, css) => {
-                        this.setState({ css });
-                      }}
-                    />
-                  </div>
-                  <div className='code-editor html-code col-4'>
-                    <div className='editor-header'>JavaScript</div>
-                    <CodeMirror
-                      value={js}
-                      name='js'
-                      options={{
-                        mode: 'javascript',
-                        ...codeMirrorOptions
-                      }}
-                      onBeforeChange={(editor, data, js) => {
-                        this.setState({ js });
+                      onBeforeChange={(editor, data, xml) => {
+                        this.setState({ xml });
                       }}
                     />
                   </div>
