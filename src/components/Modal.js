@@ -17,6 +17,7 @@ export default class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      child: this.props.child,
       showModal: false
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -28,19 +29,30 @@ export default class Modal extends Component {
   };
 
   handleCloseModal = () => {
-    this.setState({ showModal: false });
+    this.setState({ showModal: false }, () => {
+      console.log(this.props.dec);
+    });
   };
 
   render() {
     return (
       <div>
-        <button onClick={this.handleOpenModal}>Add Resources</button>
+        <button className='btn btn-primary' onClick={this.handleOpenModal}>
+          {this.props.content}
+        </button>
         <ReactModal
           isOpen={this.state.showModal}
           style={customStyles}
           contentLabel='Form Modal'
         >
-          <button onClick={this.handleCloseModal}>Close Modal</button>
+          <div>{this.props.child}</div>
+          <button
+            type='submit'
+            onClick={this.handleCloseModal}
+            className='btn btn-primary'
+          >
+            Submit
+          </button>
         </ReactModal>
       </div>
     );
