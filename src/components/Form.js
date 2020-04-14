@@ -6,7 +6,7 @@ export default class Form extends Component {
     return (
       <div>
         <br />
-        <Modal />
+        <Modal content='Add to Resources' />
       </div>
     );
   }

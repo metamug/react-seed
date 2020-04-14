@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import convert from 'xml-js';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import ReactModal from 'react-modal';
 import './editor.css';
@@ -9,13 +10,17 @@ import 'codemirror/theme/material.css';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/javascript/javascript';
+var json = {
+  Script: { attr: { id: 'myscript', output: 'true', file: 'hello-world' } },
+};
+var options = { compact: true, ignoreComment: true, spaces: 4 };
 const customStyles = {
   content: {
     position: 'absolute',
-    top: '40px',
-    left: '40px',
-    right: '40px',
-    bottom: '40px',
+    top: '50px',
+    left: '250px',
+    right: '400px',
+    bottom: '50px',
   },
 };
 ReactModal.setAppElement('#root');
@@ -27,7 +32,7 @@ export default class Modal extends Component {
       method: 'POST',
       item: false,
       showModal: false,
-      xml: '',
+      xml: convert.json2xml(json, options),
       id: '',
     };
     this.handleChange = this.handleChange.bind(this);
@@ -59,11 +64,11 @@ export default class Modal extends Component {
     };
     return (
       <div>
-        <br />
         <button className='btn btn-primary' onClick={this.handleOpenModal}>
-          Add to Resources
+          {this.props.content}
         </button>
         <ReactModal
+          shouldCloseOnOverlayClick={true}
           isOpen={this.state.showModal}
           style={customStyles}
           contentLabel='Form Modal'
@@ -73,7 +78,19 @@ export default class Modal extends Component {
               <div className='row'>
                 <div className='col-4'>
                   <div className='form-group'>
-                    <label htmlfor='resources'>Add Resources</label>
+                    <label htmlfor='id'>Input Id:</label>
+                    <input
+                      className='form-control'
+                      type='text'
+                      id='id'
+                      name='id'
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                </div>
+                <div className='col-2'>
+                  <div className='form-group'>
+                    <label htmlfor='resources'>Add Resources:</label>
                     <select
                       className='form-control'
                       id='resources'
@@ -86,11 +103,9 @@ export default class Modal extends Component {
                     </select>
                   </div>
                 </div>
-              </div>
-              <div className='row'>
-                <div className='col-4'>
+                <div className='col-2'>
                   <div className='form-group'>
-                    <label htmlfor='method'>Method</label>
+                    <label htmlfor='method'>Method:</label>
                     <select
                       className='form-control'
                       id='method'
@@ -131,18 +146,6 @@ export default class Modal extends Component {
                       onBeforeChange={(editor, data, xml) => {
                         this.setState({ xml });
                       }}
-                    />
-                  </div>
-                </div>
-                <br />
-                <div className='row'>
-                  <div className='col-6'>
-                    <label htmlfor='id'>Input Id:</label>
-                    <input
-                      type='text'
-                      id='id'
-                      name='id'
-                      onChange={this.handleChange}
                     />
                   </div>
                 </div>
