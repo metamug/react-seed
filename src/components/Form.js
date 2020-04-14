@@ -6,7 +6,7 @@ export default class Form extends Component {
     return (
       <div>
         <br />
-        <Modal content='Add to Resources' />
+        <Modal content='Add to Resources' title='Book Record' />
       </div>
     );
   }

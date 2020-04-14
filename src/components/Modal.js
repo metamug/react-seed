@@ -64,7 +64,11 @@ export default class Modal extends Component {
     };
     return (
       <div>
-        <button className='btn btn-primary' onClick={this.handleOpenModal}>
+        <button
+          className='btn btn-primary'
+          data-toggle='modal'
+          onClick={this.handleOpenModal}
+        >
           {this.props.content}
         </button>
         <ReactModal
@@ -73,93 +77,121 @@ export default class Modal extends Component {
           style={customStyles}
           contentLabel='Form Modal'
         >
-          <form onSubmit={this.handleCloseModal}>
-            <div className='container'>
-              <div className='row'>
-                <div className='col-4'>
-                  <div className='form-group'>
-                    <label htmlfor='id'>Input Id:</label>
+          <div className='modal-content'>
+            <form onSubmit={this.handleCloseModal}>
+              <div className='modal-header text-center'>
+                <h5 className='modal-title white-text w-100 font-weight-bold py-2'>
+                  {this.props.title}
+                </h5>
+                <button
+                  type='button'
+                  className='close'
+                  onClick={() => {
+                    this.setState({ showModal: false });
+                  }}
+                >
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>
+              <div className='modal-body'>
+                <div className='container'>
+                  <div className='row'>
+                    <div className='col-4'>
+                      <div className='form-group'>
+                        <label htmlfor='id'>Input Id:</label>
+                        <input
+                          className='form-control'
+                          type='text'
+                          id='id'
+                          name='id'
+                          onChange={this.handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className='col-2'>
+                      <div className='form-group'>
+                        <label htmlfor='resources'>Add Resources:</label>
+                        <select
+                          className='form-control'
+                          id='resources'
+                          name='resources'
+                          onChange={this.handleChange}
+                        >
+                          <option>Book</option>
+                          <option>Author</option>
+                          <option>Publisher</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className='col-2'>
+                      <div className='form-group'>
+                        <label htmlfor='method'>Method:</label>
+                        <select
+                          className='form-control'
+                          id='method'
+                          name='method'
+                          onChange={this.handleChange}
+                        >
+                          <option>POST</option>
+                          <option>PUT</option>
+                          <option>GET</option>
+                          <option>DELETE</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='custom-control custom-checkbox'>
                     <input
-                      className='form-control'
-                      type='text'
-                      id='id'
-                      name='id'
+                      type='checkbox'
+                      className='custom-control-input'
+                      id='item'
+                      name='item'
                       onChange={this.handleChange}
                     />
+                    <label className='custom-control-label' for='item'>
+                      Select Item??
+                    </label>
                   </div>
-                </div>
-                <div className='col-2'>
                   <div className='form-group'>
-                    <label htmlfor='resources'>Add Resources:</label>
-                    <select
-                      className='form-control'
-                      id='resources'
-                      name='resources'
-                      onChange={this.handleChange}
-                    >
-                      <option>Book</option>
-                      <option>Author</option>
-                      <option>Publisher</option>
-                    </select>
-                  </div>
-                </div>
-                <div className='col-2'>
-                  <div className='form-group'>
-                    <label htmlfor='method'>Method:</label>
-                    <select
-                      className='form-control'
-                      id='method'
-                      name='method'
-                      onChange={this.handleChange}
-                    >
-                      <option>POST</option>
-                      <option>PUT</option>
-                      <option>GET</option>
-                      <option>DELETE</option>
-                    </select>
+                    <div className='row'>
+                      <div className='code-editor xml-code col-8'>
+                        <div className='editor-header'>XML</div>
+                        <CodeMirror
+                          value={xml}
+                          name='xml'
+                          options={{
+                            mode: 'xml',
+                            ...codeMirrorOptions,
+                          }}
+                          onBeforeChange={(editor, data, xml) => {
+                            this.setState({ xml });
+                          }}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className='custom-control custom-checkbox'>
-                <input
-                  type='checkbox'
-                  className='custom-control-input'
-                  id='item'
-                  name='item'
-                  onChange={this.handleChange}
-                />
-                <label className='custom-control-label' for='item'>
-                  Select Item??
-                </label>
+              <div className='modal-footer d-flex justify-content-center'>
+                <button
+                  type='button'
+                  className='btn btn-secondary'
+                  onClick={() => {
+                    this.setState({ showModal: false });
+                  }}
+                >
+                  Close
+                </button>
+                <button
+                  type='submit'
+                  onClick={this.handleCloseModal}
+                  className='btn btn-primary btn-round'
+                >
+                  Submit
+                </button>
               </div>
-              <div className='form-group'>
-                <div className='row'>
-                  <div className='code-editor xml-code col-8'>
-                    <div className='editor-header'>XML</div>
-                    <CodeMirror
-                      value={xml}
-                      name='xml'
-                      options={{
-                        mode: 'xml',
-                        ...codeMirrorOptions,
-                      }}
-                      onBeforeChange={(editor, data, xml) => {
-                        this.setState({ xml });
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <button
-                type='submit'
-                onClick={this.handleCloseModal}
-                className='btn btn-primary'
-              >
-                Submit
-              </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </ReactModal>
       </div>
     );
