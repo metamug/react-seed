@@ -56,6 +56,7 @@ export default class Modal extends Component {
   render() {
     const { xml } = this.state;
     const codeMirrorOptions = {
+      readOnly: true,
       theme: 'material',
       lineNumbers: true,
       autoScroll: true,
@@ -172,7 +173,7 @@ export default class Modal extends Component {
                   </div>
                 </div>
               </div>
-              <div className='modal-footer d-flex justify-content-center'>
+              <div className='modal-footer d-flex justify-content-right'>
                 <button
                   type='button'
                   className='btn btn-secondary'
